@@ -28,7 +28,6 @@ export function App() {
         />
       
 
-      
         <NoteCard
           note={{
             date: new Date(),
