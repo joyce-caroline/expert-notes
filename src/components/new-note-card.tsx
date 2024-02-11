@@ -1,26 +1,30 @@
 import * as Dialog from "@radix-ui/react-dialog";
 import { X } from "lucide-react";
 import { ChangeEvent, FormEvent, useState } from "react";
-import { toast } from "sonner"
+import { toast } from "sonner";
 
-export function NewNoteCard() {
+interface NewNoteCardProps {
+  onNoteCreated: (content: string) => void;
+}
+
+export function NewNoteCard({ onNoteCreated }: NewNoteCardProps) {
   const [shouldShowOnboarding, setShouldShowOnboarding] = useState(true);
-  const [content, setContent] = useState('');
+  const [content, setContent] = useState("");
 
-  function handleStartEditor(){
+  function handleStartEditor() {
     setShouldShowOnboarding(false);
   }
 
-  function handleContentChanged(event: ChangeEvent<HTMLTextAreaElement>){
+  function handleContentChanged(event: ChangeEvent<HTMLTextAreaElement>) {
     setContent(event.target.value);
-    if (event.target.value === ''){
+    if (event.target.value === "") {
       setShouldShowOnboarding(true);
     }
   }
 
   function handleSaveNote(event: FormEvent) {
     event.preventDefault();
-    console.log(content);
+    onNoteCreated(content);
     toast.success("Nota criada com sucesso!");
   }
 
@@ -52,16 +56,26 @@ export function NewNoteCard() {
 
               {shouldShowOnboarding ? (
                 <p className="text-small leading-6 text-slate-400">
-                  Comece <button className="font-medium text-lime-400 hover:underline">gravando uma nota</button> em áudio ou se <button onClick={handleStartEditor} className="text-medium text-lime-400 hover:underline">preferir utilize apenas
-                  texto</button>.
-                </p> 
+                  Comece{" "}
+                  <button className="font-medium text-lime-400 hover:underline">
+                    gravando uma nota
+                  </button>{" "}
+                  em áudio ou se{" "}
+                  <button
+                    onClick={handleStartEditor}
+                    className="text-medium text-lime-400 hover:underline"
+                  >
+                    preferir utilize apenas texto
+                  </button>
+                  .
+                </p>
               ) : (
-                <textarea 
-                  autoFocus 
+                <textarea
+                  autoFocus
                   className="text-sm leading-6 text-slate-400 bg-transparent resize-none flex-1 outline-none"
                   onChange={handleContentChanged}
                 />
-              ) }                          
+              )}
             </div>
 
             <button
