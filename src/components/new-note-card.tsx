@@ -44,12 +44,13 @@ export function NewNoteCard({ onNoteCreated }: NewNoteCardProps) {
   function handleStartRecording() {
     setIsRecording(true);
     setShouldShowOnboarding(false);
+    
 
     const isSpeechRecognitonAPIAvailable =
       "SpeechRecognition" in window || "webkitSpeechRecognition" in window;
 
     if (!isSpeechRecognitonAPIAvailable) {
-      alert("Infelismente seu navegador não suporta a API de gravação!");
+      alert("Infelizmente seu navegador não suporta a API de gravação!");
       return;
     }
 
@@ -75,6 +76,7 @@ export function NewNoteCard({ onNoteCreated }: NewNoteCardProps) {
     };
 
     speechRecognition.start();
+    
   }
 
   function handleStopRecording() {
@@ -82,6 +84,7 @@ export function NewNoteCard({ onNoteCreated }: NewNoteCardProps) {
     if(speechRecognition !== null){
       speechRecognition.stop()
     }
+
   }
 
   return (
@@ -152,7 +155,7 @@ export function NewNoteCard({ onNoteCreated }: NewNoteCardProps) {
             ) : (
               <button
                 onClick={handleSaveNote}
-                type="submit"
+                type="button"
                 className="w-full bg-lime-400 py-4 text-center text-sm text-lime-950 outline-none font-medium hover:bg-lime-500"
               >
                 Salvar nota
