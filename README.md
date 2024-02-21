@@ -20,6 +20,9 @@ Expert Notes é uma aplicação web desenvolvida para criar, armazenar e buscar 
 3. Execute o projeto: `npm run dev`
 4. Acesse a aplicação em [http://localhost:3000](http://localhost:3000)
 
+## Deploy
+O projeto está atualmente implantado em [Expert Notes](https://joyce-caroline.github.io/expert-notes.github.io/).
+
 ## Contribuição
 Contribuições são bem-vindas! Sinta-se à vontade para abrir issues ou enviar pull requests para melhorar o projeto.
 
